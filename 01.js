@@ -3,32 +3,20 @@
 // Return whether any two number from the list add up to k.
 // Bonus: Can you do this in one pass?
 
-// Example
-// [ 10, 15, 3, 7 ]
-// k = 17
-
-// Our brute force thinking, assuming [a,b,c,d]:
-// Can we repeat with a number? i.e b + b?
-// Is passing in values in reverse a problem? (Thinking more so from a performance standpoint.)
-// For instance: a + b.....then b + a, or is the 2nd cancelled out because the first is already false? 
-
-// a + b, a + c , a + d  
-// b + a, b + c, b + d  
-// c + a, c + b , c + d  
-// d + a, d + b, d + c
-
-
 // Solution from https://www.youtube.com/watch?v=TmjexrTRr6U
 
 function sums(arr, sum) {
+ // pairs is the array we push into.
     let pairs = [];
+ // numList is our reference table.
     let numList = [];
 
+// Here's an example of the first iteration.
     for ( let i = 0; i < arr.length; i++) {
-        let currNum = arr[i];
-        let diff = sum - currNum;
-        if (numList.includes(diff)) {
-            pairs.push([currNum, diff])
+            let currNum = arr[i]; // The current number in the iteration. Ex: 5
+            let diff = sum - currNum; // The difference of the sum intended and currNum. Ex: diff = 25 - 5
+            if (numList.includes(diff)) { // numList is obviously empty. a
+                pairs.push([currNum, diff])
         }
         numList.push(currNum);
     }
